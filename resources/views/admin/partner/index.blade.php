@@ -8,7 +8,7 @@
                         <h3 class="card-title">Partner Table</h3>
 
                         <div class="card-tools">
-                            <a href="{{ route('partners.create') }}" class="btn btn-sm btn-dark">Create Partners</a>
+                            <a href="{{ route('partners.create') }}" class="btn btn-sm btn-dark">Create Stacks</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -40,7 +40,8 @@
                                             <a href="{{ route('partners.edit', $partner->id) }}">
                                                 <i class="ri-edit-box-line text-primary mx-1"></i>
                                             </a>
-                                            <a href="#" data-toggle="modal" data-target="#exampleModal{{ $partner->id }}">
+                                            <a href="#" data-toggle="modal"
+                                                data-target="#exampleModal{{ $partner->id }}">
                                                 <i class="ri-delete-bin-2-line text-danger"></i>
                                             </a>
                                             <div class="modal fade" id="exampleModal{{ $partner->id }}" tabindex="-1"
@@ -50,8 +51,8 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Delete Model
                                                             </h5>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>

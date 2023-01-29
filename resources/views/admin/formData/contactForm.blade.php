@@ -11,7 +11,8 @@
                         @foreach ($contacts as $contact)
                             <div class="card card-success card-outline direct-chat direct-chat-success my-3">
                                 <div class="card-header">
-                                    <h3 class="card-title">{{ $contact->name }}, {{$contact->email}}, {{$contact->number}}</h3>
+                                    <h3 class="card-title">{{ $contact->first_name }} {{ $contact->last_name }},
+                                        {{ $contact->email }}, {{ $contact->number }}</h3>
 
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">

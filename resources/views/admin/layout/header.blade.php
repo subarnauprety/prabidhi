@@ -13,8 +13,7 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
-    <script type="text/javascript" src="cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet"
         href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
@@ -28,10 +27,12 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-    <script async defer crossorigin="anonymous"
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}"> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    {{-- <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=1047807932330324&autoLogAppEvents=1"
-        nonce="vXJ2DRZH"></script>
+        nonce="vXJ2DRZH"></script> --}}
     @notifyCss
     <style>
         .main-header {

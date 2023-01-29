@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Create News</h3>
+                        <h3 class="card-title">Edit Page</h3>
                     </div>
                     @if ($errors)
                         @foreach ($errors->all() as $error)
@@ -14,9 +14,9 @@
                     @endif
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('news.update',$news->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('pages.update', $news->id) }}" enctype="multipart/form-data">
                         @csrf
-                        {{method_field('PATCH')}}
+                        {{ method_field('PATCH') }}
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Title</label>
@@ -24,14 +24,6 @@
                                     value="{{ $news->title }}" name="title" required>
                                 @if ($errors->has('title'))
                                     <small class="text-red">{{ $errors->first('title') }}</small>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Link</label>
-                                <input type="link" class="form-control" placeholder="Enter link"
-                                    value="{{ $news->link }}" name="link" required>
-                                @if ($errors->has('link'))
-                                    <small class="text-red">{{ $errors->first('link') }}</small>
                                 @endif
                             </div>
 
@@ -48,9 +40,17 @@
                                 @endif
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputPassword1">Description</label>
+                                <textarea name="description" id="summernote" class="form-control" cols="10" rows="10"
+                                    value="{{ $news->description }}">{!! $news->description !!}</textarea>
+                                @if ($errors->has('description'))
+                                    <small class="text-red">{{ $errors->first('description') }}</small>
+                                @endif
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputFile">Status</label>
                                 <select name="status" class="form-control">
-                                    <option value="active" @if($news->status === 'active') selected @endif >Active</option>
+                                    <option value="active" @if ($news->status === 'active') selected @endif>Active</option>
                                     <option value="inactive">Inactive</option>
                                 </select>
                             </div>
@@ -65,4 +65,18 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Write your page description',
+            tabsize: 2,
+            height: 100
+        });
+        $('#summernote1').summernote({
+            placeholder: 'Write your page description',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
 @endsection

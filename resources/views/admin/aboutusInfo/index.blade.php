@@ -20,7 +20,7 @@
                                     <div class="col-md-10">
                                         {{ $key + 1 }}. {{ $about->title }}
                                         <img src="{{ asset('images/' . $about->image) }}" alt="" class="my-2"
-                                            style="width: 100%;height:300px;object-fit:cover">
+                                            style="width: 100%;height:200px;object-fit:cover">
                                         <div class="mt-2">
                                             {!! $about->description !!}
                                         </div>
@@ -29,7 +29,8 @@
                                         <div>
                                             <a href="{{ route('about-info.edit', $about->id) }}"
                                                 class="btn btn-sm btn-primary">Edit</a>
-                                            <a href="#" data-toggle="modal" data-target="#exampleModal{{ $about->id }}"
+                                            <a href="#" data-toggle="modal"
+                                                data-target="#exampleModal{{ $about->id }}"
                                                 class="btn btn-sm btn-danger">
                                                 Delete
                                             </a>
@@ -40,8 +41,8 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Delete Model
                                                             </h5>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>

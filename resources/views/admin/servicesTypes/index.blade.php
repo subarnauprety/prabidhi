@@ -5,7 +5,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Service Type Table</h3>
+                        <h3 class="card-title">Service Table</h3>
 
                         <div class="card-tools">
                             {{-- <div class="input-group input-group-sm" style="width: 150px;">
@@ -18,7 +18,7 @@
                                 </div>
                             </div> --}}
                             <a href="{{ route('service-types.create') }}" class="btn btn-sm btn-dark">Create Service
-                                Type</a>
+                            </a>
                         </div>
                     </div>
                     <!-- /.card-header -->

@@ -100,6 +100,7 @@ class AboutInfoController extends Controller
             $image->move(public_path('images'), $img);
             $data['image'] = $img;
         }
+
         AboutInfo::find($aboutUs->id)->update($data);
         notify()->success("aboutus info is updated");
         return redirect()->route('about-info.index');

@@ -28,7 +28,7 @@
                        </a>
 
                    </li>
-                   {{-- <li class="nav-item">
+                   <li class="nav-item">
                        <a href="#" class="nav-link">
                            <i class="nav-icon fas fa-copy"></i>
                            <p>
@@ -45,27 +45,6 @@
                            <li class="nav-item">
                                <a href="{{ route('about-info.index') }}" class="nav-link">
                                    <p>About-info</p>
-                               </a>
-                           </li>
-                       </ul>
-                   </li>
-                   <li class="nav-item">
-                       <a href="#" class="nav-link">
-                           <i class="nav-icon fas fa-copy"></i>
-                           <p>
-                               Services
-                               <i class="fas fa-angle-left right"></i>
-                           </p>
-                       </a>
-                       <ul class="nav nav-treeview">
-                           <li class="nav-item">
-                               <a href="{{ route('service-types.index') }}" class="nav-link">
-                                   <p>Service Types</p>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="{{ route('services.index') }}" class="nav-link">
-                                   <p>Services</p>
                                </a>
                            </li>
                        </ul>
@@ -95,22 +74,11 @@
 
                        </ul>
                    </li>
-                   <li class="nav-item">
-                       <a href="{{ route('choice.index') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               Design
-                           </p>
-                       </a>
-                   </li>
-                   <li class="nav-item">
-                       <a href="{{ route('news.index') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               News
-                           </p>
-                       </a>
-                   </li>
+                   {{--
+
+
+
+
                    <li class="nav-item">
                        <a href="{{ route('faqs.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
@@ -120,6 +88,35 @@
                        </a>
                    </li> --}}
                    <li class="nav-item">
+                       <a href="{{ route('pages.index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Pages
+                           </p>
+                       </a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="{{ route('services.index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-copy"></i>
+                           <p>
+                               Services
+                               {{-- <i class="fas fa-angle-left right"></i> --}}
+                           </p>
+                       </a>
+                       {{-- <ul class="nav nav-treeview">
+                           <li class="nav-item">
+                               <a href="{{ route('service-types.index') }}" class="nav-link">
+                                   <p>|->Service Types</p>
+                               </a>
+                           </li>
+                           <li class="nav-item">
+                               <a href="{{ route('services.index') }}" class="nav-link">
+                                   <p>|->Services</p>
+                               </a>
+                           </li>
+                       </ul> --}}
+                   </li>
+                   <li class="nav-item">
                        <a href="{{ route('banner.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
                            <p>
@@ -127,30 +124,7 @@
                            </p>
                        </a>
                    </li>
-                   {{-- <li class="nav-item">
-                       <a href="{{ route('clients.index') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               Clients
-                           </p>
-                       </a>
-                   </li>
-                   <li class="nav-item">
-                       <a href="{{ route('testimonials.index') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               Testimonials
-                           </p>
-                       </a>
-                   </li>
-                   <li class="nav-item">
-                       <a href="{{ route('partners.index') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               Partners
-                           </p>
-                       </a>
-                   </li>
+
                    <li class="nav-item">
                        <a href="{{ route('project-type.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
@@ -168,26 +142,10 @@
                        </a>
                    </li>
                    <li class="nav-item">
-                       <a href="{{ route('contactForm') }}" class="nav-link">
+                       <a href="{{ route('testimonials.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
                            <p>
-                               Contact Forms
-                           </p>
-                       </a>
-                   </li>
-                   <li class="nav-item">
-                       <a href="{{ route('designForm') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               Design Query Forms
-                           </p>
-                       </a>
-                   </li>
-                   <li class="nav-item">
-                       <a href="{{ route('serviceQuery') }}" class="nav-link">
-                           <i class="nav-icon fas fa-th"></i>
-                           <p>
-                               Service Query Forms
+                               Testimonials
                            </p>
                        </a>
                    </li>
@@ -199,6 +157,61 @@
                            </p>
                        </a>
                    </li>
+                   {{--
+                       <li class="nav-item">
+                       <a href="{{ route('clients.index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Clients
+                           </p>
+                       </a>
+                   </li>
+
+
+
+                   <li class="nav-item">
+                       <a href="{{ route('designForm') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Design Query Forms
+                           </p>
+                       </a>
+                   </li>
+
+
+                  --}}
+                   <li class="nav-item">
+                       <a href="{{ route('partners.index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Partners
+                           </p>
+                       </a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="{{ route('stacks.index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Stacks
+                           </p>
+                       </a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="{{ route('serviceQuery') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Quote Query Forms
+                           </p>
+                       </a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="{{ route('contactForm') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               Contact Forms
+                           </p>
+                       </a>
+                   </li>
                    <li class="nav-item">
                        <a href="{{ route('users') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
@@ -206,12 +219,7 @@
                                Users
                            </p>
                        </a>
-                   </li> --}}
-
-
-
-
-
+                   </li>
                    <li class="nav-header">Settings</li>
 
                    <li class="nav-item">

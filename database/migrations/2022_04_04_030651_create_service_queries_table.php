@@ -18,8 +18,8 @@ class CreateServiceQueriesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('message');
-            $table->string('number');
-            $table->string('type');
+            $table->string('number')->nullable();
+            $table->string('service')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

@@ -1,14 +1,5 @@
     <div class="card-body">
         <div class="form-group">
-            <label for="">Select Service Type</label>
-            <select name="service_type_id" id="" class="form-control" required>
-                @foreach (App\Models\ServiceType::latest()->get() as $type)
-                    <option value="{{ $type->id }}" @if (isset($service->service_type_id)) selected @endif>
-                        {{ $type->type }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
             <label for="exampleInputEmail1">Title</label>
             <input type="text" class="form-control" placeholder="Enter title"
                 value="{{ $service->title ?? old('title') }}" name="title" required>

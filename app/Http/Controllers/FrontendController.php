@@ -2,103 +2,78 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Blog;
-use App\Models\Client;
-use App\Models\Design;
-use App\Models\DesignForm;
-use App\Models\Faq;
+use App\Models\Contact;
+
 use App\Models\NewsNotice;
+use App\Models\Partner;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\ServiceQuery;
-use App\Models\ServiceType;
-use App\Models\SiteSetting;
+use App\Models\Stack;
+use App\Models\Team;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index()
+    public function singleBanner($id = null)
     {
-        return view('frontend.pages.home');
+        return $id ? Banner::find($id) : Banner::latest()->first();
     }
-    public function designPage()
+    public function allBanners()
     {
-        $designs = Design::latest()->paginate(20);
-        return view("frontend.pages.design", compact("designs"));
+        return Banner::latest()->get();
     }
-    public function services()
+    public function allServices()
     {
-        $services = Service::latest()->get();
-        return view('frontend.pages.Services.services', compact('services'));
-    }
-    public function serviceDetailPage($slug)
-    {
-        $service = ServiceType::where('slug', $slug)->first();
-        return view('frontend.pages.Services.serviceDetails', compact('service'));
-    }
-    public function sendQuery(Request $request)
-    {
-        $store = new ServiceQuery();
-        $store->name = $request->name;
-        $store->email = $request->email;
-        $store->number = $request->number;
-        $store->message = $request->message;
-        $store->type = $request->type;
-        $store->save();
-
-        return redirect()->back()->with("msg", "Your query is sent. Thank you!");
-    }
-    public function sendDesignQuery(Request $request)
-    {
-        $store = new DesignForm();
-        $store->name = $request->name;
-        $store->email = $request->email;
-        $store->number = $request->number;
-        $store->message = $request->message;
-        $store->type = $request->type;
-        $store->save();
-
-        return redirect()->back()->with("msg", "Your query is sent. Thank you!");
-    }
-    public function sendMessage(Request $request)
-    {
-    }
-    public function faq()
-    {
-        $faqs = Faq::latest()->get();
-        return view('frontend.pages.faqs', compact('faqs'));
-    }
-    public function contactPage()
-    {
-        return view('frontend.pages.contact');
-    }
-    public function blogs()
-    {
-        $blogs = Blog::latest()->get();
-        return view('frontend.pages.blogs.blogs', compact('blogs'));
-    }
-    public function blogDetailPage($slug)
-    {
-        $blog = Blog::where('slug', $slug)->first();
-        return view('frontend.pages.blogs.blogDetail', compact('blog'));
-    }
-    public function news()
-    {
-        $news = NewsNotice::latest()->get();
-        return view('frontend.pages.newsPage', compact('news'));
-    }
-    public function aboutus()
-    {
-        return view('frontend.pages.aboutus');
+        return Service::latest()->get();
     }
     public function projects()
     {
-        $projects = Project::latest()->paginate(12);
-        return view('frontend.pages.project', compact('projects'));
+        return Project::latest()->get();
     }
-    public function clients()
+    public function testimonials()
     {
-        $clients = Client::latest()->paginate(12);
-        return view('frontend.pages.clients', compact('clients'));
+        return Testimonial::latest()->get();
+    }
+    public function teams()
+    {
+        return Team::all();
+    }
+    public function contactForm(Request $request)
+    {
+        $data = $request->validate([
+            "first_name" => "required",
+            "last_name" => "required",
+            "email" => "required",
+            "message" => "required",
+            "number" => "required",
+
+        ]);
+        Contact::create($data);
+        return "Your message is submitted. Thank you.";
+    }
+    public function quote(Request $request)
+    {
+        $data = $request->validate([
+            "name" => "required",
+            "service" => "required",
+            "email" => "required",
+            "message" => "required",
+            "number" => "sometimes",
+
+        ]);
+        ServiceQuery::create($data);
+        return "Your query is submitted. Thank you.";
+    }
+    public function partners()
+    {
+        return Partner::latest()->get();
+    }
+    public function stacks()
+    {
+        return Stack::latest()->get();
     }
 }

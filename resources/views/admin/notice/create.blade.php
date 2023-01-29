@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Create News</h3>
+                        <h3 class="card-title">Create Pages</h3>
                     </div>
                     @if ($errors)
                         @foreach ($errors->all() as $error)
@@ -14,7 +14,7 @@
                     @endif
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('news.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('pages.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
 
@@ -24,14 +24,6 @@
                                     value="{{ old('title') }}" name="title" required>
                                 @if ($errors->has('title'))
                                     <small class="text-red">{{ $errors->first('title') }}</small>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Link</label>
-                                <input type="link" class="form-control" placeholder="Enter link"
-                                    value="{{ old('link') }}" name="link" required>
-                                @if ($errors->has('link'))
-                                    <small class="text-red">{{ $errors->first('link') }}</small>
                                 @endif
                             </div>
 
@@ -45,6 +37,14 @@
                                 </div>
                                 @if ($errors->has('image'))
                                     <small class="text-red">{{ $errors->first('image') }}</small>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Description</label>
+                                <textarea name="description" id="summernote" class="form-control" cols="10" rows="10"
+                                    value="{{ old('description') }}">{{ old('title') }}</textarea>
+                                @if ($errors->has('description'))
+                                    <small class="text-red">{{ $errors->first('description') }}</small>
                                 @endif
                             </div>
                             <div class="form-group">
@@ -65,4 +65,18 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Write your page description',
+            tabsize: 2,
+            height: 100
+        });
+        $('#summernote1').summernote({
+            placeholder: 'Write your page description',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
 @endsection

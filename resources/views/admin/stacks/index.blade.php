@@ -5,10 +5,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Pages Table</h3>
+                        <h3 class="card-title">Stacks Table</h3>
 
                         <div class="card-tools">
-                            <a href="{{ route('pages.create') }}" class="btn btn-sm btn-dark">Create Pages</a>
+                            <a href="{{ route('stacks.create') }}" class="btn btn-sm btn-dark">Create Partners</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -17,32 +17,34 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
+                                    <th>Image</th>
                                     <th>status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($news as $new)
+                                @foreach ($stacks as $partner)
                                     <tr>
-                                        <td>{{ $new->id }}</td>
-                                        <td>{{ $new->title }}</td>
+                                        <td>{{ $partner->id }}</td>
+                                        <td>{{ $partner->name }}</td>
+                                        <td><img src="{{ asset('images/' . $partner->image) }}" width="90"></td>
                                         <td>
-                                            @if ($new->status === 'active')
+                                            @if ($partner->status === 'active')
                                                 <span class="badge badge-success">active</span>
                                             @else
                                                 <span class="badge badge-danger">inactive</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('pages.edit', $new->id) }}">
+                                            <a href="{{ route('stacks.edit', $partner->id) }}">
                                                 <i class="ri-edit-box-line text-primary mx-1"></i>
                                             </a>
                                             <a href="#" data-toggle="modal"
-                                                data-target="#exampleModal{{ $new->id }}">
+                                                data-target="#exampleModal{{ $partner->id }}">
                                                 <i class="ri-delete-bin-2-line text-danger"></i>
                                             </a>
-                                            <div class="modal fade" id="exampleModal{{ $new->id }}" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal{{ $partner->id }}" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -56,13 +58,13 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             Are you sure to delete <span
-                                                                class="text-red">{{ $new->name }}</span>
-                                                            page?
+                                                                class="text-red">{{ $partner->name }}</span>
+                                                            partner?
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <form action="{{ route('pages.destroy', $new->id) }}"
+                                                            <form action="{{ route('stacks.destroy', $partner->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 {{ method_field('DELETE') }}

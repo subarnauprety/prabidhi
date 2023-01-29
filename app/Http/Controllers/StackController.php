@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewsNotice;
+use App\Models\Stack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
-class NewsNoticeController extends Controller
+class StackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class NewsNoticeController extends Controller
      */
     public function index()
     {
-        $news = NewsNotice::latest()->get();
-        return view('admin.notice.index', compact('news'));
+        $stacks = Stack::latest()->get();
+        return view("admin.stacks.index", compact("stacks"));
     }
 
     /**
@@ -27,7 +26,7 @@ class NewsNoticeController extends Controller
      */
     public function create()
     {
-        return view('admin.notice.create');
+        return view("admin.stacks.create");
     }
 
     /**
@@ -39,10 +38,9 @@ class NewsNoticeController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required',
-            'image' => 'sometimes',
-            'status' => 'required',
-            'description' => 'required',
+            'name' => 'required',
+            'image' => 'required',
+            'status' => 'required'
 
         ]);
         if ($request->hasFile('image')) {
@@ -51,19 +49,18 @@ class NewsNoticeController extends Controller
             $image->move(public_path('images'), $img);
             $data['image'] = $img;
         }
-        $data["slug"] = Str::slug($data["title"]);
-        NewsNotice::create($data);
-        notify()->success("Page is Created");
-        return redirect()->route('pages.index');
+        Stack::create($data);
+        notify()->success("Stack is Created");
+        return redirect()->route('stacks.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NewsNotice  $newsNotice
+     * @param  \App\Models\Stack  $stack
      * @return \Illuminate\Http\Response
      */
-    public function show(NewsNotice $newsNotice)
+    public function show(Stack $stack)
     {
         //
     }
@@ -71,62 +68,55 @@ class NewsNoticeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NewsNotice  $newsNotice
+     * @param  \App\Models\Stack  $stack
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Stack $stack)
     {
-        $news = NewsNotice::find($id);
-        return view('admin.notice.edit', compact('news'));
+        return view('admin.stacks.edit', ['partner' => $stack]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NewsNotice  $newsNotice
+     * @param  \App\Models\Stack  $stack
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Stack $stack)
     {
         $data = $request->validate([
-            'title' => 'required',
+            'name' => 'required',
             'image' => 'sometimes',
-            'status' => 'required',
-            'description' => 'required',
-
+            'status' => 'required'
         ]);
-        $pages = NewsNotice::find($id);
         if ($request->hasFile('image')) {
-            if (File::exists(public_path('images'), $pages->image)) {
-                File::delete(public_path('images', $pages->image));
+            if (File::exists(public_path('images'), $stack->image)) {
+                File::delete(public_path('images', $stack->image));
             }
             $image = $request->file('image');
             $img = time() . '.' . $image->getClientOriginalName();
             $image->move(public_path('images'), $img);
             $data['image'] = $img;
         }
-        $data["slug"] = Str::slug($data["title"]);
-
-        $pages->update($data);
-        notify()->success("Page is updated");
-        return redirect()->route('pages.index');
+        Stack::find($stack->id)->update($data);
+        notify()->success("stack is updated");
+        return redirect()->route('stacks.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NewsNotice  $newsNotice
+     * @param  \App\Models\Stack  $stack
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Stack $stack)
     {
-        $page = NewsNotice::find($id);
-        $page->delete();
-        if (File::exists(public_path('images'), $page->image)) {
-            File::delete(public_path('images', $page->image));
+        $stack->delete();
+        if (File::exists(public_path('images'), $stack->image)) {
+            File::delete(public_path('images', $stack->image));
         }
-        notify()->success('Page is deleted');
-        return redirect()->route('pages.index');
+        notify()->success('stack is deleted');
+        return redirect()->route('stacks.index');
     }
 }

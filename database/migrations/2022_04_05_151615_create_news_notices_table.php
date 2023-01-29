@@ -16,8 +16,9 @@ class CreateNewsNoticesTable extends Migration
         Schema::create('news_notices', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->string('image');
-            $table->string('link');
+            $table->longText('description');
             $table->string('status');
             $table->timestamps();
         });

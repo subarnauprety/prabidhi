@@ -20,6 +20,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceQueryController;
 use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\StackController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
@@ -44,28 +45,28 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // banner
     Route::resource('/banner', BannerController::class);
     Route::resource('/site-setting', SiteSettingController::class);
-    // Route::resource('/service-types', ServiceTypeController::class);
-    // Route::resource('/services', ServiceController::class);
-    // Route::resource('/clients', ClientController::class);
-    // Route::resource('/testimonials', TestimonialController::class);
-    // Route::resource('/partners', PartnerController::class);
-    // Route::resource('/faqs', FaqController::class);
-    // Route::resource('/blog-types', BlogTypeController::class);
-    // Route::resource('/blogs', BlogController::class);
-    // Route::resource('/news', NewsNoticeController::class);
-    // Route::resource('/blog-content', BlogContentController::class);
-    // Route::get('/service-query-form', [ServiceQueryController::class, 'index'])->name('serviceQuery');
-    // Route::get('/contact-forms', [ContactController::class, 'index'])->name('contactForm');
-    // Route::resource('/aboutus', AboutUsController::class);
-    // Route::resource('/about-info', AboutInfoController::class);
-    // Route::resource('/project', ProjectController::class);
-    // Route::resource('/teams', TeamController::class);
-    // Route::get('/users', [UserController::class, 'users'])->name('users');
-    // Route::resource("/choice", DesignController::class);
-    // Route::resource("/project-type", ProjectTypeController::class);
-    // Route::get("/design-form", [DesignFormController::class, "index"])->name("designForm");
+    Route::resource('/service-types', ServiceTypeController::class);
+    Route::resource('/services', ServiceController::class);
+    Route::resource('/testimonials', TestimonialController::class);
+    Route::resource('/blog-types', BlogTypeController::class);
+    Route::resource('/blogs', BlogController::class);
+    Route::resource('/pages', NewsNoticeController::class);
+    Route::resource('/blog-content', BlogContentController::class);
+    Route::get('/quote-query-form', [ServiceQueryController::class, 'index'])->name('serviceQuery');
+    Route::get('/contact-forms', [ContactController::class, 'index'])->name('contactForm');
+    Route::resource('/aboutus', AboutUsController::class);
+    Route::resource('/about-info', AboutInfoController::class);
+    Route::resource('/project', ProjectController::class);
+    Route::resource('/teams', TeamController::class);
+    Route::get('/users', [UserController::class, 'users'])->name('users');
+    Route::resource("/project-type", ProjectTypeController::class);
+    Route::resource("/partners", PartnerController::class);
+    Route::resource("/stacks", StackController::class);
 });
 Route::get("/", function () {
     return view("welcome");
 });
+
+// api
+
 require __DIR__ . '/auth.php';

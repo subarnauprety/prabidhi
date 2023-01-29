@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Create Partners</h3>
+                        <h3 class="card-title">Edit Stack</h3>
                     </div>
                     @if ($errors)
                         @foreach ($errors->all() as $error)
@@ -14,13 +14,14 @@
                     @endif
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('partners.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('stacks.update', $partner->id) }}" enctype="multipart/form-data">
                         @csrf
+                        {{ method_field('PATCH') }}
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter name"
-                                    value="{{ old('name') }}" name="name" required>
+                                    value="{{ $partner->name }}" name="name" required>
                                 @if ($errors->has('name'))
                                     <small class="text-red">{{ $errors->first('name') }}</small>
                                 @endif
@@ -41,8 +42,9 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Status</label>
                                 <select name="status" class="form-control">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="active" @if ($partner->status === 'active') selected @endif>Active</option>
+                                    <option value="inactive" @if ($partner->status === 'inactive') selected @endif>Inactive
+                                    </option>
                                 </select>
                             </div>
                         </div>

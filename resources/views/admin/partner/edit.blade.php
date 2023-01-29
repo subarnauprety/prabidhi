@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Edit partner</h3>
+                        <h3 class="card-title">Edit Partner</h3>
                     </div>
                     @if ($errors)
                         @foreach ($errors->all() as $error)
@@ -14,8 +14,7 @@
                     @endif
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('partners.update', $partner->id) }}"
-                        enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('partners.update', $partner->id) }}" enctype="multipart/form-data">
                         @csrf
                         {{ method_field('PATCH') }}
                         <div class="card-body">
