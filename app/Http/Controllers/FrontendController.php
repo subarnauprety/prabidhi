@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AboutUsResource;
+use App\Http\Resources\BannerResource;
+use App\Http\Resources\BlogResource;
+use App\Http\Resources\PageResource;
+use App\Http\Resources\ProjectResource;
+use App\Http\Resources\ServiceResource;
+use App\Http\Resources\StackResource;
+use App\Http\Resources\TeamResource;
+use App\Http\Resources\TestimonialResource;
+use App\Models\AboutUs;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Contact;
-
+use App\Models\Newsletter;
 use App\Models\NewsNotice;
 use App\Models\Partner;
 use App\Models\Project;
@@ -20,27 +30,50 @@ class FrontendController extends Controller
 {
     public function singleBanner($id = null)
     {
-        return $id ? Banner::find($id) : Banner::latest()->first();
+        $banner =  $id ? Banner::where("id", $id)->get() : Banner::latest()->take(1)->get();
+        return BannerResource::collection($banner);
     }
     public function allBanners()
     {
         return Banner::latest()->get();
     }
-    public function allServices()
+    public function allServices($limit = null)
     {
-        return Service::latest()->get();
+        if ($limit !== null) {
+            return ServiceResource::collection(Service::latest()->take($limit)->get());
+        }
+        return ServiceResource::collection(Service::latest()->get());
     }
-    public function projects()
+    public function projects($limit = null)
     {
-        return Project::latest()->get();
+        if ($limit !== null) {
+            return ProjectResource::collection(Project::latest()->take($limit)->get());
+        }
+        return ProjectResource::collection(Project::latest()->get());
+    }
+    public function allprojects()
+    {
+        return ProjectResource::collection(Project::paginate(12));
+    }
+    public function blogs($limit = null)
+    {
+        if ($limit !== null) {
+            return BlogResource::collection(Blog::latest()->take($limit)->get());
+        }
+        // return Blog::latest()->paginate(10);
+        return BlogResource::collection(Blog::latest()->paginate(10));
+    }
+    public function blogDetail($slug)
+    {
+        return new BlogResource(Blog::where("slug", $slug)->first());
     }
     public function testimonials()
     {
-        return Testimonial::latest()->get();
+        return TestimonialResource::collection(Testimonial::latest()->get());
     }
     public function teams()
     {
-        return Team::all();
+        return TeamResource::collection(Team::get());
     }
     public function contactForm(Request $request)
     {
@@ -74,6 +107,23 @@ class FrontendController extends Controller
     }
     public function stacks()
     {
-        return Stack::latest()->get();
+        return StackResource::collection(Stack::latest()->get());
+    }
+    public function about()
+    {
+        return AboutUsResource::collection(AboutUs::all());
+    }
+    public function storeNewsletter(Request $request)
+    {
+        $data = $request->validate([
+            "email" => "required|unique:newsletters,email",
+            "status" => "sometimes"
+        ]);
+        Newsletter::create($data);
+        return response()->json(["msg" => "suscribed"]);
+    }
+    public function page($slug)
+    {
+        return new PageResource(NewsNotice::where("slug", $slug)->first());
     }
 }

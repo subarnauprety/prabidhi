@@ -14,8 +14,7 @@
                     @endif
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('aboutus.update', $aboutus->id) }}"
-                        enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('aboutus.update', $aboutus->id) }}" enctype="multipart/form-data">
                         @csrf
                         {{ method_field('PATCH') }}
                         <div class="card-body">
@@ -66,7 +65,30 @@
                             </div> --}}
                         </div>
                         <!-- /.card-body -->
-
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Members</label>
+                            <input type="integer" class="form-control" placeholder="Enter Members"
+                                value="{{ $aboutus->members }}" name="members" required>
+                            @if ($errors->has('members'))
+                                <small class="text-red">{{ $errors->first('members') }}</small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Projects</label>
+                            <input type="integer" class="form-control" placeholder="Enter projects"
+                                value="{{ $aboutus->projects }}" name="projects" required>
+                            @if ($errors->has('projects'))
+                                <small class="text-red">{{ $errors->first('projects') }}</small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Happy Clients</label>
+                            <input type="integer" class="form-control" placeholder="Enter clients"
+                                value="{{ $aboutus->clients }}" name="clients" required>
+                            @if ($errors->has('clients'))
+                                <small class="text-red">{{ $errors->first('clients') }}</small>
+                            @endif
+                        </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

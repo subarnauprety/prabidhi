@@ -42,6 +42,9 @@ class AboutUsController extends Controller
             'description' => 'required',
             'image' => 'sometimes',
             'short_description' => 'sometimes',
+            'members' => 'sometimes',
+            'projects' => 'sometimes',
+            'clients' => 'sometimes',
         ]);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -90,7 +93,10 @@ class AboutUsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'short_description' => 'sometimes',
-            'image' => 'sometimes'
+            'image' => 'sometimes',
+            'members' => 'sometimes',
+            'projects' => 'sometimes',
+            'clients' => 'sometimes',
         ]);
         $aboutUs = AboutUs::find($id);
         if ($request->hasFile('image')) {

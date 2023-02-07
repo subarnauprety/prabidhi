@@ -8,7 +8,7 @@
                        alt="User Image"> --}}
                </div>
                <div class="info">
-                   <a href="#" class="d-block">{{ auth()->user()->name ?? 'userName' }}</a>
+                   <a href="/admin/dashboard" class="d-block">{{ auth()->user()->name ?? 'userName' }}</a>
                </div>
            </div>
 
@@ -157,8 +157,7 @@
                            </p>
                        </a>
                    </li>
-                   {{--
-                       <li class="nav-item">
+                   <li class="nav-item">
                        <a href="{{ route('clients.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
                            <p>
@@ -166,6 +165,8 @@
                            </p>
                        </a>
                    </li>
+                   {{--
+
 
 
 
@@ -213,10 +214,18 @@
                        </a>
                    </li>
                    <li class="nav-item">
-                       <a href="{{ route('users') }}" class="nav-link">
+                       <a href="{{ route('users.index') }}" class="nav-link">
                            <i class="nav-icon fas fa-th"></i>
                            <p>
                                Users
+                           </p>
+                       </a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="{{ route('newsletter.index') }}" class="nav-link">
+                           <i class="nav-icon fas fa-th"></i>
+                           <p>
+                               News Letter
                            </p>
                        </a>
                    </li>

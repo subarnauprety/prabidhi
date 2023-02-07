@@ -5,11 +5,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Users Table</h3>
+                        <h3 class="card-title">News Letter Table</h3>
 
                         <div class="card-tools">
-
-                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-dark">Create User</a>
+                            <a href="{{ route('newsletter.create') }}" class="btn btn-sm btn-dark">Create newsletters</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -18,30 +17,32 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>email</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Email</th>
+                                    {{-- <th>status</th> --}}
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($newsletters as $newsletter)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->status }}</td>
-
+                                        <td>{{ $newsletter->id }}</td>
+                                        <td>{{ $newsletter->email }}</td>
+                                        {{-- <td>
+                                            @if ($newsletter->status === 'active')
+                                                <span class="badge badge-success">active</span>
+                                            @else
+                                                <span class="badge badge-danger">inactive</span>
+                                            @endif
+                                        </td> --}}
                                         <td>
-                                            <a href="{{ route('users.edit', $user->id) }}">
+                                            <a href="{{ route('newsletter.edit', $newsletter->id) }}">
                                                 <i class="ri-edit-box-line text-primary mx-1"></i>
                                             </a>
                                             <a href="#" data-toggle="modal"
-                                                data-target="#exampleModal{{ $user->id }}">
+                                                data-target="#exampleModal{{ $newsletter->id }}">
                                                 <i class="ri-delete-bin-2-line text-danger"></i>
                                             </a>
-                                            <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal{{ $newsletter->id }}" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -55,13 +56,14 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             Are you sure to delete <span
-                                                                class="text-red">{{ $user->name }}</span>
-                                                            user?
+                                                                class="text-red">{{ $newsletter->name }}</span>
+                                                            newsletter?
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <form action="{{ route('users.destroy', $user->id) }}"
+                                                            <form
+                                                                action="{{ route('newsletter.destroy', $newsletter->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 {{ method_field('DELETE') }}

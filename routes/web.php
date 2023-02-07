@@ -12,6 +12,7 @@ use App\Http\Controllers\DesignController;
 use App\Http\Controllers\DesignFormController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NewsNoticeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProjectController;
@@ -58,10 +59,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('/about-info', AboutInfoController::class);
     Route::resource('/project', ProjectController::class);
     Route::resource('/teams', TeamController::class);
-    Route::get('/users', [UserController::class, 'users'])->name('users');
+    Route::resource('/users', UserController::class);
     Route::resource("/project-type", ProjectTypeController::class);
     Route::resource("/partners", PartnerController::class);
     Route::resource("/stacks", StackController::class);
+    Route::resource("/newsletter", NewsletterController::class);
+    Route::resource("/clients", ClientController::class);
 });
 Route::get("/", function () {
     return view("welcome");

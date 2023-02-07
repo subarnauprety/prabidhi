@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Description</label>
-                                <textarea name="description" class="form-control" cols="10" rows="10" id="summernote"
+                                <textarea name="description" class="form-control" cols="10" rows="5" id="summernot"
                                     value="{{ old('description') }}">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <small class="text-red">{{ $errors->first('description') }}</small>
@@ -58,6 +58,30 @@
                                     <option value="inactive">Inactive</option>
                                 </select>
                             </div> --}}
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Members</label>
+                                <input type="integer" class="form-control" placeholder="Enter Members"
+                                    value="{{ old('members') }}" name="members" required>
+                                @if ($errors->has('members'))
+                                    <small class="text-red">{{ $errors->first('members') }}</small>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Projects</label>
+                                <input type="integer" class="form-control" placeholder="Enter projects"
+                                    value="{{ old('projects') }}" name="projects" required>
+                                @if ($errors->has('projects'))
+                                    <small class="text-red">{{ $errors->first('projects') }}</small>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Happy Clients</label>
+                                <input type="integer" class="form-control" placeholder="Enter clients"
+                                    value="{{ old('clients') }}" name="clients" required>
+                                @if ($errors->has('clients'))
+                                    <small class="text-red">{{ $errors->first('clients') }}</small>
+                                @endif
+                            </div>
                         </div>
                         <!-- /.card-body -->
 
