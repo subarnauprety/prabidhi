@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AboutUsResource;
 use App\Http\Resources\BannerResource;
 use App\Http\Resources\BlogResource;
+use App\Http\Resources\ClientResource;
 use App\Http\Resources\PageResource;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\ServiceResource;
@@ -14,6 +15,7 @@ use App\Http\Resources\TestimonialResource;
 use App\Models\AboutUs;
 use App\Models\Banner;
 use App\Models\Blog;
+use App\Models\Client;
 use App\Models\Contact;
 use App\Models\Newsletter;
 use App\Models\NewsNotice;
@@ -125,5 +127,9 @@ class FrontendController extends Controller
     public function page($slug)
     {
         return new PageResource(NewsNotice::where("slug", $slug)->first());
+    }
+    public function clients()
+    {
+        return ClientResource::collection(Client::latest()->get());
     }
 }

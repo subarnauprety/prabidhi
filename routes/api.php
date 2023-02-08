@@ -31,3 +31,4 @@ Route::post("/quote", [FrontendController::class, "quote"]);
 Route::get("/partners", [FrontendController::class, "partners"]);
 Route::get("/stacks", [FrontendController::class, "stacks"]);
 Route::get("/about-us", [FrontendController::class, "about"]);
+Route::get("/clients", [FrontendController::class, "clients"]);
