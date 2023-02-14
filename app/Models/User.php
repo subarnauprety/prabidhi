@@ -26,6 +26,7 @@ class User extends Authenticatable
         'address',
         'designation',
         'status',
+        'slug'
     ];
 
     /**

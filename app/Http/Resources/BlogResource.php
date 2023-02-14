@@ -22,6 +22,7 @@ class BlogResource extends JsonResource
             "slug" => $this->slug,
             'image' => $this->image ? URL::to("images/" . $this->image) : null,
             "description" => $this->description,
+            "short_description" => $this->short_description,
             "content" => $this->blogContents
         ];
     }

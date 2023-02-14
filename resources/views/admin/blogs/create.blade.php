@@ -22,8 +22,8 @@
                                 <select name="blog_type_id" class="form-control" required>
                                     <option value="">Select Blog Type</option>
                                     @foreach (App\Models\BlogType::latest()->get() as $type)
-
-                                    <option value="{{$type->id}}"  class="form-control">{{$type->type_title}}</option>
+                                        <option value="{{ $type->id }}" class="form-control">{{ $type->type_title }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('blog_type_id'))
@@ -32,21 +32,30 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Blog Title</label>
-                              <input type="text" name="title" value="{{old('title')}}" class="form-control" placeholder="enter title" row="20">
+                                <input type="text" name="title" value="{{ old('title') }}" class="form-control"
+                                    placeholder="enter title" row="20">
                                 @if ($errors->has('title'))
                                     <small class="text-red">{{ $errors->first('title') }}</small>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Blog Image</label>
-                              <input type="file" name="image" value="{{old('image')}}" class="form-control" placeholder="enter image" row="20">
+                                <input type="file" name="image" value="{{ old('image') }}" class="form-control"
+                                    placeholder="enter image" row="20">
                                 @if ($errors->has('image'))
                                     <small class="text-red">{{ $errors->first('image') }}</small>
                                 @endif
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputEmail1">Blog Short Descripiton</label>
+                                <textarea name="short_description" class="form-control" cols="10" rows="5">{{ old('short_description') }}</textarea>
+                                @if ($errors->has('short_description'))
+                                    <small class="text-red">{{ $errors->first('short_description') }}</small>
+                                @endif
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputEmail1">Blog Descripiton</label>
-                                <textarea name="description" class="form-control" id="summernote" cols="30" rows="10">{{old('description')}}</textarea>
+                                <textarea name="description" class="form-control" id="summernote" cols="30" rows="10">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <small class="text-red">{{ $errors->first('description') }}</small>
                                 @endif
@@ -59,7 +68,7 @@
                                 </select>
                             </div>
 
-                         <div id="content-box"></div>
+                            <div id="content-box"></div>
 
 
                         </div>
@@ -67,7 +76,8 @@
 
                         <div class="card-footer d-flex justify-content-between w-100 ">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-success ml-auto" id="add-content">Add More Content</button>
+                            <button type="button" class="btn btn-success ml-auto" id="add-content">Add More
+                                Content</button>
                         </div>
                     </form>
                 </div>
@@ -76,21 +86,20 @@
     </div>
 @endsection
 @section('script')
-<script>
-    $('#summernote').summernote({
-        placeholder: 'Write your blog description',
-        tabsize: 2,
-        height: 100
-    });
-
-</script>
-<script>
-    var btn = document.getElementById('add-content');
-    var box = document.getElementById('content-box');
-    let i = 0;
-    btn.addEventListener('click',(e)=>{
-        box.insertAdjacentHTML('beforeend',
-            `
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Write your blog description',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
+    <script>
+        var btn = document.getElementById('add-content');
+        var box = document.getElementById('content-box');
+        let i = 0;
+        btn.addEventListener('click', (e) => {
+            box.insertAdjacentHTML('beforeend',
+                `
             <div class="form-group more-content bg-light p-2 my-2">
                             <button type="button" class="d-flex ml-auto btn btn-sm btn-danger my-2" id="removeBtn${i}">Remove</button>
                             <div class="form-group">
@@ -107,21 +116,17 @@
                             </div>
                     </div>
             `
-        );
-        $(`#summernote${i}`).summernote({
-        placeholder: 'Write your blog description',
-        tabsize: 2,
-        height: 100
-    });
-        let removeBtn = document.getElementById(`removeBtn${i}`);
-        removeBtn.addEventListener('click',(e)=>{
-           e.target.parentElement.remove();
-        })
-        i++;
-    });
-
-
-
-</script>
-
+            );
+            $(`#summernote${i}`).summernote({
+                placeholder: 'Write your blog description',
+                tabsize: 2,
+                height: 100
+            });
+            let removeBtn = document.getElementById(`removeBtn${i}`);
+            removeBtn.addEventListener('click', (e) => {
+                e.target.parentElement.remove();
+            })
+            i++;
+        });
+    </script>
 @endsection

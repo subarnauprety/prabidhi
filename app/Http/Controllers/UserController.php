@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -42,7 +44,7 @@ class UserController extends Controller
             "name" => "required",
             "email" => "required|unique:users,id",
             "status" => "required",
-            "password" => "sometimes",
+            "password" => "required",
             "address" => "required",
             "number" => "required",
             "image" => "sometimes",
@@ -55,6 +57,8 @@ class UserController extends Controller
             $image->move(public_path('images'), $img);
             $data['image'] = $img;
         }
+        $data["slug"] = Str::slug($data["name"]);
+        $data["password"] = Hash::make($data["password"]);
         User::create($data);
         notify()->success("User is Created");
         return redirect()->route('users.index');
@@ -104,13 +108,21 @@ class UserController extends Controller
             "designation" => "sometimes"
 
         ]);
+        $user = User::find($id);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $img = time() . '.' . $image->getClientOriginalName();
             $image->move(public_path('images'), $img);
             $data['image'] = $img;
         }
-        User::find($id)->update($data);
+        $data["slug"] = Str::slug($data["name"]);
+        if (isset($data["password"])) {
+            if (!Hash::check($data["password"], $user->password)) {
+                $data["password"] = Hash::make($data["password"]);
+            }
+        }
+
+        $user->update($data);
         notify()->success("User is updated");
         return redirect()->route('users.index');
     }
